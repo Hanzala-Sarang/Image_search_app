@@ -14,8 +14,11 @@ async function searchImages(){
     const response = await fetch(url);
     const data = await response.json();
 
-    console.log(data)
     const results = data.results;
+
+    if (keyword.length == 0){
+        showMoreBtn.style.display = 'none'
+    }
 
     if (page === 1){
         searchResult.innerHTML = ""
@@ -31,9 +34,9 @@ async function searchImages(){
 
         imageLink.appendChild(image);
         searchResult.appendChild(imageLink)
+        showMoreBtn.style.display = 'block';
     })
 
-    showMoreBtn.style.display = 'block';
 }
 
 searchForm.addEventListener("submit",(e)=>{
